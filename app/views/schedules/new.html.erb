@@ -12,7 +12,7 @@
         <%# f.association :booking %>
         <%# f.association :pack %>
         <div style="border-style: groove; padding: 10px" class="col-md-6">
-          <%= ff.input :appointment %>
+          <%= ff.input :appointment, selected: (Time.parse(@dates[i] || Time.now.to_s)) %>
           <%= ff.input :customer_id, as: :hidden, input_html: { value: params[:customer] } %>
           <%= ff.input :booking_id, as: :hidden, input_html: { value: params[:booking] } %>
           <%= ff.input :pack_id, as: :hidden, input_html: { value: params[:pack] } %>

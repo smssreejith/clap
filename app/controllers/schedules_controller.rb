@@ -18,6 +18,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new
     customer = Customer.find(params[:customer])
     @nearby_employees = Employee.near([customer.latitude, customer.longitude], 20, units: :km)
+    @dates = params[:dates].present? ? (session[:dates] || []) : []
   end
 
   # GET /schedules/1/edit
@@ -44,17 +45,18 @@ class SchedulesController < ApplicationController
     rescue NoMethodError
       Schedule.transaction do
         appointments = params[:schedule].count
+        session[:dates] = []
         params[:schedule].each do |schedule|
           @schedule = Schedule.new(schedule.permit(:customer_id, :booking_id, :pack_id, :employee_id, :appointment))
-          no_clash = Schedule.where(employee_id: @schedule.employee_id, appointment: (@schedule.appointment - 1.hour)..(@schedule.appointment + 1.hour)).blank?
-          if @schedule.valid? and no_clash
+          if @schedule.valid?
+            session[:dates] << @schedule.appointment
             @schedule.save
           else
             customer = Customer.find(@schedule.customer_id)
             @nearby_employees = Employee.near([customer.latitude, customer.longitude], 20, units: :km)
             @errors = true
             respond_to do |format|
-              format.html {redirect_to new_schedule_path(appointments: appointments, customer: @schedule.customer.id, pack: @schedule.pack.id, booking: @schedule.booking.id), notice: "#{@schedule.employee.name} not available for #{@schedule.appointment.to_formatted_s(:long_ordinal)}"}
+              format.html {redirect_to new_schedule_path(appointments: appointments, customer: @schedule.customer.id, pack: @schedule.pack.id, booking: @schedule.booking.id, dates: "true"), notice: "#{@schedule.employee.name} not available for #{@schedule.appointment.to_formatted_s(:long_ordinal)}"}
             end
             raise ActiveRecord::Rollback
             break
@@ -77,6 +79,8 @@ class SchedulesController < ApplicationController
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
       else
+        customer = Customer.find(@schedule.customer_id)
+        @nearby_employees = Employee.near([customer.latitude, customer.longitude], 20, units: :km)
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
       end
