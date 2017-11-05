@@ -1,0 +1,7 @@
+<h1>Editing Schedule</h1>
+<%= render partial: "nearby", locals: {nearby_employees: @nearby_employees} %>
+
+<%= render 'form', schedule: @schedule %>
+
+<%= link_to 'Show', @schedule %> |
+<%= link_to 'Back', schedules_path %>

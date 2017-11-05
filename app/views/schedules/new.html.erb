@@ -1,0 +1,31 @@
+<h1>New Schedule</h1>
+<%= render partial: "nearby", locals: {nearby_employees: @nearby_employees} %>
+<div class="row">
+<p id="notice"><%= notice %></p>
+<%= simple_form_for(@schedule) do |f| %>
+  <%= f.error_notification %>
+
+  <% params[:appointments].to_i.times do |i|%>
+    <div class="form-inputs">
+      <%= f.simple_fields_for '[]', Schedule.new do |ff|%>
+        <%# f.association :customer %>
+        <%# f.association :booking %>
+        <%# f.association :pack %>
+        <div style="border-style: groove; padding: 10px" class="col-md-6">
+          <%= ff.input :appointment %>
+          <%= ff.input :customer_id, as: :hidden, input_html: { value: params[:customer] } %>
+          <%= ff.input :booking_id, as: :hidden, input_html: { value: params[:booking] } %>
+          <%= ff.input :pack_id, as: :hidden, input_html: { value: params[:pack] } %>
+          <%= ff.association :employee, selected: (@nearby_employees.first.id rescue nil) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'Back', schedules_path %>

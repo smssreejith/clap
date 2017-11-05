@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Employees</h1>
+
+<table class="responstable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact number</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.contact_number %></td>
+        <td><%= employee.address %></td>
+        <td>
+          <%= link_to 'Show', employee %>
+          <%= link_to 'Edit', edit_employee_path(employee) %>
+          <%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>

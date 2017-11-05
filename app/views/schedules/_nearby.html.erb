@@ -1,0 +1,15 @@
+<div class="row">
+  <table class="responstable">
+    <tr>
+      <th>Nearby Employees</th>
+      <th>Distance</th>
+    </tr>
+    <% nearby_employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.distance.round(2) %> Kms</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+

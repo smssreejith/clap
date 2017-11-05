@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<table class="responstable">
+  <tr>
+    <th><strong>Name</strong></th>
+    <th><%= @employee.name %></th>
+  </tr>
+  <tr>
+    <td><strong>Contact number</strong></td>
+    <td><%= @employee.contact_number %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>

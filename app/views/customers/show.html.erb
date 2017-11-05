@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<table class="responstable">
+  <tr>
+    <th><strong>Name</strong></th>
+    <th><%= @customer.name %></th>
+  </tr>
+  <tr>
+    <td><strong>Contact number</strong></td>
+    <td><%= @customer.contact_number %></td>
+  </tr>
+  <tr>
+    <td><strong>Ref</strong></td>
+    <td><%= @customer.ref %></td>
+  </tr>
+  <tr>
+    <td><strong>Booking status:</strong></td>
+    <td><%= @customer.booking_status %></td>
+  </tr>
+  <tr>
+    <td><strong>Last contacted:</strong></td>
+    <td><%= @customer.last_contacted %></td>
+  </tr>
+  <tr>
+    <td><strong>Amount pending:</strong></td>
+    <td><%= @customer.amount_pending %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

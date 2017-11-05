@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Schedules</h1>
+
+<table class="responstable">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Booking</th>
+      <th>Pack</th>
+      <th>Employee</th>
+      <th>Appointment</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.customer.name %></td>
+        <td><%= link_to schedule.booking.id, booking_path(schedule.booking) %></td>
+        <td><%= schedule.pack.name %></td>
+        <td><%= schedule.employee.name %></td>
+        <td><%= schedule.appointment.to_formatted_s(:long_ordinal) %></td>
+        <td><%= schedule.status %></td>
+        <td>
+          <%= link_to 'Show', schedule %>
+          <%= link_to 'Edit', edit_schedule_path(schedule, customer: schedule.customer.id, pack: schedule.pack.id, booking: schedule.booking.id) %>
+          <%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @schedules %>
+
