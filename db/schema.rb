@@ -10,72 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105043015) do
-
-  create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "customer_id"
-    t.integer  "pack_id"
-    t.integer  "no_of_pack"
-    t.decimal  "amount",      precision: 10
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.decimal  "amount_paid", precision: 10
-    t.index ["customer_id"], name: "index_bookings_on_customer_id", using: :btree
-    t.index ["pack_id"], name: "index_bookings_on_pack_id", using: :btree
-  end
+ActiveRecord::Schema.define(version: 20171030114835) do
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "contact_number"
-    t.string   "ref"
-    t.string   "booking_status"
-    t.datetime "last_contacted"
-    t.decimal  "amount_pending",            precision: 10
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "no_of_cars"
-    t.string   "address"
-    t.float    "latitude",       limit: 24
-    t.float    "longitude",      limit: 24
+    t.string   "alternate_number"
+    t.string   "profession"
+    t.string   "experience"
+    t.string   "enterprise"
+    t.integer  "age"
+    t.string   "sex"
+    t.string   "refferal_type"
+    t.string   "refferal"
+    t.string   "executive"
+    t.string   "email"
+    t.string   "vehicle_kind"
+    t.string   "vehicle_no"
+    t.string   "vehicle_brand"
+    t.string   "vehicle_model"
+    t.string   "vehicle_color"
+    t.string   "vehicle_gear_type"
+    t.string   "vehicle_no_of_gears"
+    t.string   "vehicle_other"
+    t.string   "cab_name"
+    t.string   "cab_agent"
+    t.string   "cab_rate"
+    t.string   "cab_total_distance"
+    t.string   "cab_total_fare"
+    t.string   "cab_kind"
+    t.string   "cab_no"
+    t.string   "cab_brand"
+    t.string   "cab_model"
+    t.string   "cab_color"
+    t.string   "cab_gear_type"
+    t.string   "cab_no_of_gears"
+    t.string   "home_address"
+    t.string   "office_address"
+    t.string   "location"
+    t.string   "current_provider"
+    t.string   "requirement"
+    t.string   "remarks"
+    t.string   "review"
+    t.string   "rating"
+    t.string   "suggestions"
+    t.string   "insights"
+    t.string   "to_do"
+    t.string   "last_communication"
+    t.string   "call_back"
+    t.string   "status"
+    t.string   "discounts"
+    t.decimal  "amount_pending",      precision: 10
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "contact_number"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "address"
-    t.float    "latitude",       limit: 24
-    t.float    "longitude",      limit: 24
-  end
-
-  create_table "packs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.decimal  "amount",             precision: 10
-    t.integer  "no_of_appointments"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-  end
-
-  create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "customer_id"
-    t.integer  "booking_id"
-    t.integer  "pack_id"
-    t.integer  "employee_id"
-    t.datetime "appointment"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "status",      default: false
-    t.index ["booking_id"], name: "index_schedules_on_booking_id", using: :btree
-    t.index ["customer_id"], name: "index_schedules_on_customer_id", using: :btree
-    t.index ["employee_id"], name: "index_schedules_on_employee_id", using: :btree
-    t.index ["pack_id"], name: "index_schedules_on_pack_id", using: :btree
-  end
-
-  add_foreign_key "bookings", "customers"
-  add_foreign_key "bookings", "packs"
-  add_foreign_key "schedules", "bookings"
-  add_foreign_key "schedules", "customers"
-  add_foreign_key "schedules", "employees"
-  add_foreign_key "schedules", "packs"
 end

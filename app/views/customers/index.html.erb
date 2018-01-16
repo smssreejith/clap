@@ -2,37 +2,116 @@
 
 <h1>Customers</h1>
 <%= link_to 'New Customer', new_customer_path %>
-<table class="responstable">
+<table class="responstable unresponsive">
   <thead>
     <tr>
+      <th>Actions</th>
       <th>Name</th>
       <th>Contact number</th>
-      <th>Ref</th>
-      <th>Booking status</th>
-      <th>Last contacted</th>
-      <th>Address</th>
-      <th>No. of Cars</th>
-      <th>Amount pending</th>
-      <th>Actions</th>
+      <th>Alternate number</th>
+      <th>Profession</th>
+      <th>Experience</th>
+      <th>Enterprise</th>
+      <th>Age</th>
+      <th>Sex</th>
+      <th>Refferal Type</th>
+      <th>Refferal</th>
+      <th>Executive</th>
+      <th>Email</th>
+      <th>Home Address</th>
+      <th>Office Address</th>
+      <th>Vehicle Kind</th>
+      <th>Vehicle No</th>
+      <th>Vehicle Brand</th>
+      <th>Vehicle Model</th>
+      <th>Vehicle Color</th>
+      <th>Vehicle Gear Type</th>
+      <th>Vehicle No of Gears</th>
+      <th>Vehicle Other</th>
+      <th>Cab Name</th>
+      <th>Cab Agent</th>
+      <th>Cab Rate</th>
+      <th>Cab Total Distance</th>
+      <th>Cab Total Fare</th>
+      <th>Cab Kind</th>
+      <th>Cab No</th>
+      <th>Cab Brand</th>
+      <th>Cab Model</th>
+      <th>Cab Color</th>
+      <th>Cab Gear Type</th>
+      <th>Cab No of Gears</th>
+      <th>Location</th>
+      <th>Current Provider</th>
+      <th>Requirement</th>
+      <th>Remarks</th>
+      <th>Review</th>
+      <th>Rating</th>
+      <th>Suggestions</th>
+      <th>Insights</th>
+      <th>To Do</th>
+      <th>Last Communication</th>
+      <th>Call Back</th>
+      <th>Status</th>
+      <th>Discounts</th>
     </tr>
   </thead>
 
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= customer.name %></td>
-        <td><%= customer.contact_number %></td>
-        <td><%= customer.ref %></td>
-        <td><%= customer.booking_status %></td>
-        <td><%= customer.last_contacted %></td>
-        <td><%= customer.address %></td>
-        <td><%= customer.no_of_cars %></td>
-        <td><%= customer.amount_pending %></td>
         <td>
           <%= link_to 'Show', customer %>
           <%= link_to 'Edit', edit_customer_path(customer) %>
           <%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
+        <td><%= customer.name %></td>
+        <td><%= customer.contact_number %></td>
+        <td><%= customer.alternate_number %></td>
+        <td><%= customer.profession %></td>
+        <td><%= customer.experience %></td>
+        <td><%= customer.enterprise %></td>
+        <td><%= customer.age %></td>
+        <td><%= customer.sex %></td>
+        <td><%= customer.refferal_type %></td>
+        <td><%= customer.refferal %></td>
+        <td><%= customer.executive %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.home_address %></td>
+        <td><%= customer.office_address %></td>
+        <td><%= customer.vehicle_kind %></td>
+        <td><%= customer.vehicle_no %></td>
+        <td><%= customer.vehicle_no %></td>
+        <td><%= customer.vehicle_brand %></td>
+        <td><%= customer.vehicle_model %></td>
+        <td><%= customer.vehicle_color %></td>
+        <td><%= customer.vehicle_gear_type %></td>
+        <td><%= customer.vehicle_no_of_gears %></td>
+        <td><%= customer.vehicle_other %></td>
+        <td><%= customer.cab_name %></td>
+        <td><%= customer.cab_agent %></td>
+        <td><%= customer.cab_rate %></td>
+        <td><%= customer.cab_total_distance %></td>
+        <td><%= customer.cab_total_fare %></td>
+        <td><%= customer.cab_kind %></td>
+        <td><%= customer.cab_no %></td>
+        <td><%= customer.cab_brand %></td>
+        <td><%= customer.cab_model %></td>
+        <td><%= customer.cab_color %></td>
+        <td><%= customer.cab_gear_type %></td>
+        <td><%= customer.cab_no_of_gears %></td>
+        <td><%= customer.location %></td>
+        <td><%= customer.current_provider %></td>
+        <td><%= customer.requirement %></td>
+        <td><%= customer.remarks %></td>
+        <td><%= customer.review %></td>
+        <td><%= customer.rating %></td>
+        <td><%= customer.suggestions %></td>
+        <td><%= customer.insights %></td>
+        <td><%= customer.to_do %></td>
+        <td><%= customer.last_communication %></td>
+        <td><%= customer.call_back %></td>
+        <td><%= customer.status %></td>
+        <td><%= customer.discounts %></td>
       </tr>
     <% end %>
   </tbody>
